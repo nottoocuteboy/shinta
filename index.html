@@ -2,43 +2,49 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Laporan SPMB 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shinta - Financial Assistant</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2933/2933116.png">
     <style>
-        /* Menghilangkan scrollbar dan margin bawaan browser */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            height: 100%; 
+        /* Menghilangkan semua margin dan padding bawaan agar iframe rata penuh */
+        body, html {
+            margin: 0;
+            padding: 0;
             width: 100%;
-            overflow: hidden; 
-            background-color: #ffffff;
+            height: 100%;
+            overflow: hidden; /* Mencegah munculnya dua scrollbar (dari iframe dan dari body) */
+            background-color: #fdfcfb; /* Warna latar dasar sementara menunggu iframe loading */
+            font-family: sans-serif;
         }
 
-        .wrapper {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
+        /* Memaksa iframe memenuhi 100% layar tanpa garis tepi */
         iframe {
-            position: absolute;
-            /* Trik menghilangkan banner: menarik iframe ke atas */
-            top: -45px; 
-            left: 0;
             width: 100%;
-            /* Menambah tinggi iframe agar bagian bawah tidak kosong */
-            height: calc(100vh + 45px);
+            height: 100%;
             border: none;
+            display: block;
+        }
+
+        /* Loading screen sederhana saat script.google.com sedang memuat */
+        #loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #f06292;
+            font-weight: 600;
+            z-index: -1; /* Berada di bawah iframe, akan tertutup otomatis saat iframe selesai loading */
         }
     </style>
 </head>
 <body>
+    
+    <div id="loader">Memuat Shinta... ✨</div>
 
-    <div class="wrapper">
-        <iframe src="https://script.google.com/macros/s/AKfycbxu-lk75RsdIx4hmT7VkjYASFY6vlWx1L5YP8QLuhq3Awd4dKlDWSHQbaIgCJ3yM97vXw/exec"></iframe>
-    </div>
+    <iframe 
+        src="https://script.google.com/macros/s/AKfycbxu-lk75RsdIx4hmT7VkjYASFY6vlWx1L5YP8QLuhq3Awd4dKlDWSHQbaIgCJ3yM97vXw/exec" 
+        allowfullscreen>
+    </iframe>
 
 </body>
 </html>
