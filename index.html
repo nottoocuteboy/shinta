@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Laporan SPMB 2026</title>
+    <style>
+        /* Menghilangkan scrollbar dan margin bawaan browser */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%;
+            overflow: hidden; 
+            background-color: #ffffff;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        iframe {
+            position: absolute;
+            /* Trik menghilangkan banner: menarik iframe ke atas */
+            top: -45px; 
+            left: 0;
+            width: 100%;
+            /* Menambah tinggi iframe agar bagian bawah tidak kosong */
+            height: calc(100vh + 45px);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <iframe src="https://script.google.com/macros/s/AKfycbyArfZs6pO6jxL6gUSmErGQxYO6UGD8c6pXikyTLXfzqzHEAnZtr6kUNzgWcMkTDeb3pA/exec"></iframe>
+    </div>
+
+</body>
+</html>
