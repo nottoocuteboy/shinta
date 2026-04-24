@@ -1,0 +1,9 @@
+{
+  "appId": "com.shinta.app",
+  "appName": "Shinta App",
+  "webDir": "www",
+  "server": {
+    "url": "https://nottoocuteboy.github.io/shinta/",
+    "cleartext": true
+  }
+}
