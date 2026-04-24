@@ -57,15 +57,15 @@ jobs:
             cp icon.png assets/icon.png
             npx capacitor-assets generate --android
             
-            # Hapus ikon bawaan pabrik (XML) agar Android dipaksa pakai ikon PNG buatan kita
-            rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
-            rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+            # BUMI HANGUSKAN folder adaptive icon bawaan pabrik agar Android TERPAKSA pakai PNG kita
+            rm -rf android/app/src/main/res/mipmap-anydpi-v26
           fi
 
       - name: Rakit APK dan Atasi Bentrok Kotlin
         run: |
           cd android
           
+          # Obat penangkal error Duplicate Class Kotlin
           cat <<EOF >> app/build.gradle
           
           configurations.all {
