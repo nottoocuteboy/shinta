@@ -22,11 +22,33 @@ jobs:
         with:
           node-version: 20
 
-      - name: Persiapkan Capacitor
+      - name: Siapkan Lingkungan Kerja (Pasti Berhasil)
         run: |
-          npm install @capacitor/core @capacitor/cli @capacitor/android
+          # 1. Inisialisasi npm dasar agar capacitor tidak bingung
+          npm init -y
+          
+          # 2. Install Capacitor versi terbaru
+          npm install @capacitor/core @capacitor/android
+          npm install -D @capacitor/cli
+          
+          # 3. Buat folder www dan file pancingan secara paksa
           mkdir -p www
-          echo "pancingan" > www/index.html
+          echo "<html><body>Menyiapkan Shinta...</body></html>" > www/index.html
+          
+          # 4. Buat ulang konfigurasi capacitor secara paksa untuk memastikan URL benar
+          cat <<EOF > capacitor.config.json
+          {
+            "appId": "com.shinta.app",
+            "appName": "Shinta App",
+            "webDir": "www",
+            "server": {
+              "url": "https://nottoocuteboy.github.io/shinta/",
+              "cleartext": true
+            }
+          }
+          EOF
+          
+          # 5. Tambahkan platform Android
           npx cap add android
 
       - name: Rakit APK
