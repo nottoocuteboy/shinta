@@ -56,6 +56,10 @@ jobs:
           if [ -f "icon.png" ]; then
             cp icon.png assets/icon.png
             npx capacitor-assets generate --android
+            
+            # Hapus ikon bawaan pabrik (XML) agar Android dipaksa pakai ikon PNG buatan kita
+            rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+            rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
           fi
 
       - name: Rakit APK dan Atasi Bentrok Kotlin
