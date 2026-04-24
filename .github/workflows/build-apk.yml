@@ -25,7 +25,8 @@ jobs:
       - name: Persiapkan Capacitor
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android
-          npx cap init "Shinta App" "com.shinta.app" --web-dir .
+          mkdir -p www
+          echo "pancingan" > www/index.html
           npx cap add android
 
       - name: Rakit APK
