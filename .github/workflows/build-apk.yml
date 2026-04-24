@@ -22,14 +22,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Siapkan Lingkungan Kerja (Pasti Berhasil)
+      - name: Siapkan Lingkungan Kerja & Ikon
         run: |
           # 1. Inisialisasi npm
           npm init -y
           
-          # 2. Install Capacitor
+          # 2. Install Capacitor dan Alat Pembuat Ikon
           npm install @capacitor/core @capacitor/android
-          npm install -D @capacitor/cli
+          npm install -D @capacitor/cli @capacitor/assets
           
           # 3. Buat folder www
           mkdir -p www
@@ -50,12 +50,18 @@ jobs:
           
           # 5. Tambahkan platform Android
           npx cap add android
+          
+          # 6. Pasang Ikon secara otomatis (jika ada file icon.png)
+          mkdir -p assets
+          if [ -f "icon.png" ]; then
+            cp icon.png assets/icon.png
+            npx capacitor-assets generate --android
+          fi
 
       - name: Rakit APK dan Atasi Bentrok Kotlin
         run: |
           cd android
           
-          # Ini adalah "obat" untuk mengatasi error Duplicate Class Kotlin
           cat <<EOF >> app/build.gradle
           
           configurations.all {
