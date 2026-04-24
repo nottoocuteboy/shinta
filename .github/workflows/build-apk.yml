@@ -24,18 +24,18 @@ jobs:
 
       - name: Siapkan Lingkungan Kerja (Pasti Berhasil)
         run: |
-          # 1. Inisialisasi npm dasar agar capacitor tidak bingung
+          # 1. Inisialisasi npm
           npm init -y
           
-          # 2. Install Capacitor versi terbaru
+          # 2. Install Capacitor
           npm install @capacitor/core @capacitor/android
           npm install -D @capacitor/cli
           
-          # 3. Buat folder www dan file pancingan secara paksa
+          # 3. Buat folder www
           mkdir -p www
           echo "<html><body>Menyiapkan Shinta...</body></html>" > www/index.html
           
-          # 4. Buat ulang konfigurasi capacitor secara paksa untuk memastikan URL benar
+          # 4. Buat konfigurasi capacitor
           cat <<EOF > capacitor.config.json
           {
             "appId": "com.shinta.app",
@@ -51,9 +51,21 @@ jobs:
           # 5. Tambahkan platform Android
           npx cap add android
 
-      - name: Rakit APK
+      - name: Rakit APK dan Atasi Bentrok Kotlin
         run: |
           cd android
+          
+          # Ini adalah "obat" untuk mengatasi error Duplicate Class Kotlin
+          cat <<EOF >> app/build.gradle
+          
+          configurations.all {
+              resolutionStrategy {
+                  exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+                  exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+              }
+          }
+          EOF
+          
           chmod +x gradlew
           ./gradlew assembleDebug
 
